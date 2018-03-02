@@ -24,7 +24,7 @@ RSpec.describe 'Accounts API', type: :request do
 
     # Test suite for GET /accounts/:id
     describe 'GET /accounts/:id' do
-        before {get '/accounts/#{account_id}'}
+        before {get "/accounts/#{account_id}"}
 
         context 'when the record exists' do
             it 'returns the account' do
