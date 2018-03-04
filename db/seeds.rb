@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Account.create!([
+    {name: 'Bank of Ireland', balance: 50.00, isActive: true},
+    {name: 'AIB', balance: 0.00, isActive: true},
+    {name: 'Bank of Brazil', balance: 0.00, isActive: false},
+    {name: 'N26', balance: -150.00, isActive: true},
+    {name: 'Ulster', balance: 0.00, isActive: false}
+])
