@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  name       :string
 #  balance    :decimal(, )
-#  isActive   :boolean
+#  isActive   :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
