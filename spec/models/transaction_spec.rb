@@ -17,4 +17,5 @@ RSpec.describe Transaction, type: :model do
   it { should validate_presence_of(:date) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:amount) }
+  it { should belong_to(:account) }
 end

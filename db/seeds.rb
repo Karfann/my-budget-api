@@ -17,6 +17,7 @@
             date: Faker::Date.backward(30), 
             description: Faker::Company.name,
             note: Faker::Lorem.paragraph,
-            amount: Faker::Number.decimal(2)
+            amount: Faker::Number.decimal(2),
+            account_id: Faker::Number.between(1,Account.count)
         )
 end

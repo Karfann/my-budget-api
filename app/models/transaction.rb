@@ -13,4 +13,5 @@
 
 class Transaction < ApplicationRecord
     validates_presence_of :date, :description, :amount
+    belongs_to :account
 end

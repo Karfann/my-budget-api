@@ -17,5 +17,6 @@ FactoryBot.define do
         description { Faker::Company.name }
         note { Faker::Lorem.paragraph }
         amount { Faker::Number.decimal(2) }
+        association :account
     end
 end
