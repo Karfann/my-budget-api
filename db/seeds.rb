@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Status.create!([ 
+    {name: 'Cleared'}, 
+    {name: 'Uncleared'}
+])
+
 5.times do |index|
     Account.create!(
             name: Faker::Bank.name, 
@@ -13,11 +18,13 @@
             isActive: Faker::Boolean.boolean
         )
     
+    
     Transaction.create!(
             date: Faker::Date.backward(30), 
             description: Faker::Company.name,
             note: Faker::Lorem.paragraph,
             amount: Faker::Number.decimal(2),
-            account_id: Faker::Number.between(1,Account.count)
+            account_id: Faker::Number.between(1,Account.count),
+            status_id: Faker::Number.between(1,Status.count)
         )
 end

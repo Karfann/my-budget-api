@@ -9,6 +9,7 @@
 #  amount      :decimal(, )
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  account_id  :integer
 #
 
 require 'rails_helper'
@@ -18,4 +19,5 @@ RSpec.describe Transaction, type: :model do
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:amount) }
   it { should belong_to(:account) }
+  it { should belong_to(:status) }
 end

@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'Transactions API', type: :request do
+RSpec.describe 'Status API', type: :request do
     # initialize test data 
-    let!(:transactions) { create_list(:transaction, 10) }
-    let(:transaction_id) { transactions.first.id }
+    let!(:status_list) { create_list(:status, 10) }
+    let(:status_id) { status_list.first.id }
 
-    # Test suite for GET/transactions
-    describe 'GET /transactions' do
+    # Test suite for GET/Status
+    describe 'GET /status' do
         # make HTTP get request before each example
-        before { get '/transactions' }
+        before { get '/status' }
 
-        it 'returns transactions' do
+        it 'returns status' do
           # Note `json` is a custom helper to parse JSON responses
           expect(json).not_to be_empty
           expect(json.size).to eq(10)
@@ -21,14 +21,14 @@ RSpec.describe 'Transactions API', type: :request do
         end
     end
 
-    # Test suite for GET /transactions/:id
-    describe 'GET /transactions/:id' do
-        before {get "/transactions/#{transaction_id}"}
+    # Test suite for GET /status/:id
+    describe 'GET /status/:id' do
+        before {get "/status/#{status_id}"}
 
         context 'when the record exists' do
-            it 'returns the transaction' do
+            it 'returns the status' do
                 expect(json).not_to be_empty
-                expect(json['id']).to eq(transaction_id)
+                expect(json['id']).to eq(status_id)
             end
 
             it 'returns status code 200' do
@@ -37,32 +37,28 @@ RSpec.describe 'Transactions API', type: :request do
         end
 
         context 'when the record does not exist' do
-            let(:transaction_id) {100}
+            let(:status_id) {100}
 
             it 'returns status code 404' do
                 expect(response).to have_http_status(404)
             end
 
             it 'returns a not found message' do
-                expect(response.body).to match(/Couldn't find Transaction/)
+                expect(response.body).to match(/Couldn't find Status/)
             end
         end
     end
 
-    # Test suite for POST /transactions
-    describe 'POST /transactions' do
+    # Test suite for POST /status
+    describe 'POST /status' do
         #valid payload
-        let(:valid_attributes) {{ date: Time.now, description: 'Lorem Ipsum', note: 'My new expense', amount: 50.99, account_id: 1, status_id: 1}}
+        let(:valid_attributes) {{ name: 'My Status'}}
 
         context 'when the request is valid' do
-            before { post '/transactions', params: valid_attributes }
+            before { post '/status', params: valid_attributes }
 
-            it 'creates a transaction' do
-                expect(json['description']).to eq('Lorem Ipsum')
-                expect(json['note']).to eq('My new expense')
-                expect(json['amount']).to eq('50.99')
-                expect(json['account_id']).to eq(1)
-                expect(json['status_id']).to eq(1)
+            it 'creates a status' do
+                expect(json['name']).to eq('My Status')
             end
 
             it 'returns status code 201' do
@@ -71,7 +67,7 @@ RSpec.describe 'Transactions API', type: :request do
         end
 
         context 'when the request is invalid' do
-            before { post '/transactions', params: { description: 'Foobar' } }
+            before { post '/status', params: { name: '' } }
 
             it 'returns status code 422' do 
                 expect(response).to have_http_status(422)
@@ -79,17 +75,17 @@ RSpec.describe 'Transactions API', type: :request do
 
             it 'returns a validation failure message' do
                 expect(response.body)
-                    .to match(/Validation failed: Date can't be blank/)
+                    .to match(/Validation failed: Name can't be blank/)
             end
         end
     end
 
     # Test suite for PUT /transactions/:id
-    describe 'PUT /transactions/:id' do
-        let(:valid_attributes) {{ description: 'Amazing', amount: 15.99}}
+    describe 'PUT /status/:id' do
+        let(:valid_attributes) {{ name: 'Amazing Skill' }}
 
         context 'when the record exists' do
-            before { put "/transactions/#{transaction_id}", params: valid_attributes}
+            before { put "/status/#{status_id}", params: valid_attributes}
 
             it 'updates the record' do
                 expect(response.body).to be_empty
@@ -101,9 +97,9 @@ RSpec.describe 'Transactions API', type: :request do
         end
     end
 
-    #Test suite for DELETE /transactions/:id
-    describe 'DELETE /transactions/:id' do
-        before { delete "/transactions/#{transaction_id}" }
+    #Test suite for DELETE /status/:id
+    describe 'DELETE /status/:id' do
+        before { delete "/status/#{status_id}" }
 
         it 'returns status code 204' do
             expect(response).to have_http_status(204)
