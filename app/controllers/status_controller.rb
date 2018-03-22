@@ -32,7 +32,7 @@ class StatusController < ApplicationController
 
     private 
         def status_params
-            params.permit(:name)
+            params.permit(:name, :isActive)
         end
 
         def set_status

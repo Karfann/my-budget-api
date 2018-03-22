@@ -52,13 +52,14 @@ RSpec.describe 'Status API', type: :request do
     # Test suite for POST /status
     describe 'POST /status' do
         #valid payload
-        let(:valid_attributes) {{ name: 'My Status'}}
+        let(:valid_attributes) {{ name: 'My Status', isActive: true}}
 
         context 'when the request is valid' do
             before { post '/status', params: valid_attributes }
 
             it 'creates a status' do
                 expect(json['name']).to eq('My Status')
+                expect(json['isActive']).to eq(true)
             end
 
             it 'returns status code 201' do
