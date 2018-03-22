@@ -13,4 +13,5 @@
 class Account < ApplicationRecord
     validates_presence_of :name, :balance
     has_many :transactions
+    default_scope {order(:name)}
 end
