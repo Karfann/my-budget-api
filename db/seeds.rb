@@ -7,17 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Status.create!([ 
-    {name: 'Cleared'}, 
-    {name: 'Uncleared'}
+    {name: 'Cleared', isActive: true}, 
+    {name: 'Uncleared', isActive: true},
+    {name: 'Void', isActive: false}
 ])
 
-5.times do |index|
+3.times do 
     Account.create!(
-            name: Faker::Bank.name, 
-            balance: Faker::Number.decimal(2), 
-            isActive: Faker::Boolean.boolean
-        )
-    
+        name: Faker::Bank.name, 
+        balance: Faker::Number.decimal(2), 
+        isActive: Faker::Boolean.boolean
+    )
+end
+
+10.times do |index|
     
     Transaction.create!(
             date: Faker::Date.backward(30), 
