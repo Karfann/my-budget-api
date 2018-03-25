@@ -11,6 +11,7 @@
 #  updated_at  :datetime         not null
 #  account_id  :integer
 #  status_id   :integer
+#  category_id :integer
 #
 
 FactoryBot.define do

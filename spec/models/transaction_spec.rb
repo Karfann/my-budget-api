@@ -11,6 +11,7 @@
 #  updated_at  :datetime         not null
 #  account_id  :integer
 #  status_id   :integer
+#  category_id :integer
 #
 
 require 'rails_helper'
@@ -21,4 +22,5 @@ RSpec.describe Transaction, type: :model do
   it { should validate_presence_of(:amount) }
   it { should belong_to(:account) }
   it { should belong_to(:status) }
+  it { should belong_to(:category) }
 end

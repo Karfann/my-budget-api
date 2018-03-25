@@ -52,7 +52,15 @@ RSpec.describe 'Transactions API', type: :request do
     # Test suite for POST /transactions
     describe 'POST /transactions' do
         #valid payload
-        let(:valid_attributes) {{ date: Time.now, description: 'Lorem Ipsum', note: 'My new expense', amount: 50.99, account_id: 1, status_id: 1}}
+        let(:valid_attributes) {{ 
+            date: Time.now, 
+            description: 'Lorem Ipsum', 
+            note: 'My new expense', 
+            amount: 50.99, 
+            account_id: 1, 
+            status_id: 1,
+            categories_id: 1
+        }}
 
         context 'when the request is valid' do
             before { post '/transactions', params: valid_attributes }

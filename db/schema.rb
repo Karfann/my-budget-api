@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322202556) do
+ActiveRecord::Schema.define(version: 20180325224022) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.decimal "balance"
     t.boolean "isActive", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.boolean "isActive"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,7 +43,9 @@ ActiveRecord::Schema.define(version: 20180322202556) do
     t.datetime "updated_at", null: false
     t.integer "account_id"
     t.integer "status_id"
+    t.integer "category_id"
     t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
     t.index ["status_id"], name: "index_transactions_on_status_id"
   end
 
