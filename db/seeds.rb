@@ -1,24 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 Status.create!([ 
-    {name: 'Cleared', isActive: true}, 
-    {name: 'Uncleared', isActive: true},
-    {name: 'Void', isActive: false}
+    {name: 'Cleared', isActive: Faker::Boolean.boolean}, 
+    {name: 'Uncleared', isActive: Faker::Boolean.boolean},
+    {name: 'Void', isActive: Faker::Boolean.boolean}
 ])
 
-3.times do 
-    Account.create!(
-        name: Faker::Bank.name, 
-        balance: Faker::Number.decimal(2), 
-        isActive: Faker::Boolean.boolean
-    )
-end
+Category.create!([ 
+    {name: 'Food & Drinks', isActive: Faker::Boolean.boolean}, 
+    {name: 'Shopping', isActive: Faker::Boolean.boolean},
+    {name: 'Housing', isActive: Faker::Boolean.boolean},
+    {name: 'Transportation', isActive: Faker::Boolean.boolean},
+    {name: 'Vehicle', isActive: Faker::Boolean.boolean},
+    {name: 'Life & Entertainment', isActive: Faker::Boolean.boolean},
+    {name: 'Communication, PC', isActive: Faker::Boolean.boolean},
+    {name: 'Financial expenses', isActive: Faker::Boolean.boolean},
+    {name: 'Investments', isActive: Faker::Boolean.boolean},
+    {name: 'Income', isActive: Faker::Boolean.boolean},
+    {name: 'Others', isActive: Faker::Boolean.boolean}
+])
+
+Account.create!([ 
+    {name: 'Bradesco', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean}, 
+    {name: 'Banco do Brasil', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
+    {name: 'Santander', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
+    {name: 'Itau', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
+    {name: 'n26', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
+    {name: 'Nubank', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
+])
 
 10.times do |index|
     
@@ -28,6 +35,7 @@ end
             note: Faker::Lorem.paragraph,
             amount: Faker::Number.decimal(2),
             account_id: Faker::Number.between(1,Account.count),
-            status_id: Faker::Number.between(1,Status.count)
+            status_id: Faker::Number.between(1,Status.count),
+            category_id: Faker::Number.between(1,Category.count)
         )
 end
