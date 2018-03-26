@@ -36,6 +36,6 @@ class CategoriesController < ApplicationController
         end
 
         def set_category
-            @category = Status.find(params[:id])
+            @category = Category.find(params[:id])
         end
 end

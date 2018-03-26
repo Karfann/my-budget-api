@@ -17,7 +17,7 @@ RSpec.describe 'Categories API', type: :request do
         end
 
         it 'returns categories code 200' do
-            expect(response).to have_http_category(200)
+            expect(response).to have_http_status(200)
         end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe 'Categories API', type: :request do
             end
 
             it 'returns category code 200' do
-                expect(response).to have_http_category(200)
+                expect(response).to have_http_status(200)
             end
         end
 
@@ -40,7 +40,7 @@ RSpec.describe 'Categories API', type: :request do
             let(:category_id) {100}
 
             it 'returns category code 404' do
-                expect(response).to have_http_category(404)
+                expect(response).to have_http_status(404)
             end
 
             it 'returns a not found message' do
@@ -63,7 +63,7 @@ RSpec.describe 'Categories API', type: :request do
             end
 
             it 'returns category code 201' do
-                expect(response).to have_http_category(201)
+                expect(response).to have_http_status(201)
             end
         end
 
@@ -71,7 +71,7 @@ RSpec.describe 'Categories API', type: :request do
             before { post '/categories', params: { name: '' } }
 
             it 'returns category code 422' do 
-                expect(response).to have_http_category(422)
+                expect(response).to have_http_status(422)
             end
 
             it 'returns a validation failure message' do
@@ -93,7 +93,7 @@ RSpec.describe 'Categories API', type: :request do
             end
 
             it 'returns category code 204' do
-                expect(response).to have_http_category(204)
+                expect(response).to have_http_status(204)
             end
         end
     end
@@ -103,7 +103,7 @@ RSpec.describe 'Categories API', type: :request do
         before { delete "/categories/#{category_id}" }
 
         it 'returns category code 204' do
-            expect(response).to have_http_category(204)
+            expect(response).to have_http_status(204)
         end
     end
 end

@@ -22,5 +22,6 @@ FactoryBot.define do
         amount { Faker::Number.decimal(2) }
         association :account
         association :status
+        association :category
     end
 end
