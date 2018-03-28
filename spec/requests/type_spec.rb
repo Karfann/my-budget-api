@@ -60,7 +60,7 @@ RSpec.describe 'Type API', type: :request do
             it 'creates a type' do
                 expect(json['name']).to eq('Income')
                 expect(json['isActive']).to eq(true)
-                expect(json['value']).to eq(1)
+                expect(json['value']).to eq('1.0')
             end
 
             it 'returns type code 201' do
@@ -87,7 +87,7 @@ RSpec.describe 'Type API', type: :request do
         let(:valid_attributes) {{ name: 'Expense' }}
 
         context 'when the record exists' do
-            before { put "/categories/#{type_id}", params: valid_attributes}
+            before { put "/types/#{type_id}", params: valid_attributes}
 
             it 'updates the record' do
                 expect(response.body).to be_empty

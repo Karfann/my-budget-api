@@ -26,7 +26,7 @@ class TypesController < ApplicationController
 
     # DELETE /types/:id
     def destroy
-        @types.destroy
+        @type.destroy
         head :no_content
     end
 
@@ -36,6 +36,6 @@ class TypesController < ApplicationController
         end
 
         def set_type
-            @types = Type.find(params[:id])
+            @type = Type.find(params[:id])
         end
 end
