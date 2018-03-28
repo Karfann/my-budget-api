@@ -12,6 +12,7 @@
 #  account_id  :integer
 #  status_id   :integer
 #  category_id :integer
+#  type_id     :integer
 #
 
 require 'rails_helper'
@@ -23,4 +24,5 @@ RSpec.describe Transaction, type: :model do
   it { should belong_to(:account) }
   it { should belong_to(:status) }
   it { should belong_to(:category) }
+  it { should belong_to(:type) }
 end

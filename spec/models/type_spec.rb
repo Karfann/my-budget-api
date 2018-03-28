@@ -10,10 +10,10 @@
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-    factory :type do
-        name { Faker::Name.name }
-        isActive { Faker::Boolean.boolean }
-        value { Faker::Number.between(-1, 1) }
-    end
+require 'rails_helper'
+
+RSpec.describe Type, type: :model do
+  it { should validate_presence_of(:name)}
+  it { should validate_presence_of(:value)}
+  it { should have_many(:transactions) }
 end

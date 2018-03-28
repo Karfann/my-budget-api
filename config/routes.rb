@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :transactions
   resources :status
   resources :categories
+  resources :types
 end

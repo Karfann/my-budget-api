@@ -27,6 +27,12 @@ Account.create!([
     {name: 'Nubank', balance: Faker::Number.decimal(2), isActive: Faker::Boolean.boolean},
 ])
 
+Type.create!([
+    {name: 'Income', isActive: true, value: 1},
+    {name: 'Expense', isActive: true, value: -1},
+    {name: 'Transfer', isActive: true, value: 0}
+])
+
 10.times do |index|
     
     Transaction.create!(
@@ -36,6 +42,7 @@ Account.create!([
             amount: Faker::Number.decimal(2),
             account_id: Faker::Number.between(1,Account.count),
             status_id: Faker::Number.between(1,Status.count),
-            category_id: Faker::Number.between(1,Category.count)
+            category_id: Faker::Number.between(1,Category.count),
+            type_id: Faker::Number.between(1,Type.count)
         )
 end

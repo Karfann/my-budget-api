@@ -52,7 +52,7 @@ RSpec.describe 'Type API', type: :request do
     # Test suite for POST /types
     describe 'POST /types' do
         #valid payload
-        let(:valid_attributes) {{ name: 'Income', isActive: true, value: 1, isSingleAction: false}}
+        let(:valid_attributes) {{ name: 'Income', isActive: true, value: 1 }}
 
         context 'when the request is valid' do
             before { post '/types', params: valid_attributes }
@@ -61,7 +61,6 @@ RSpec.describe 'Type API', type: :request do
                 expect(json['name']).to eq('Income')
                 expect(json['isActive']).to eq(true)
                 expect(json['value']).to eq(1)
-                expect(json['isSingleAction']).to eq(false)
             end
 
             it 'returns type code 201' do

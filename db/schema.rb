@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325224022) do
+ActiveRecord::Schema.define(version: 20180328205514) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -44,9 +44,19 @@ ActiveRecord::Schema.define(version: 20180325224022) do
     t.integer "account_id"
     t.integer "status_id"
     t.integer "category_id"
+    t.integer "type_id"
     t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["category_id"], name: "index_transactions_on_category_id"
     t.index ["status_id"], name: "index_transactions_on_status_id"
+    t.index ["type_id"], name: "index_transactions_on_type_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.boolean "isActive"
+    t.decimal "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

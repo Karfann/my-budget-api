@@ -10,10 +10,8 @@
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-    factory :type do
-        name { Faker::Name.name }
-        isActive { Faker::Boolean.boolean }
-        value { Faker::Number.between(-1, 1) }
-    end
+class Type < ApplicationRecord
+    validates_presence_of :name, :value
+    has_many :transactions
+    default_scope {order(:name)}
 end

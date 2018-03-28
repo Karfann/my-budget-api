@@ -12,6 +12,7 @@
 #  account_id  :integer
 #  status_id   :integer
 #  category_id :integer
+#  type_id     :integer
 #
 
 FactoryBot.define do
@@ -23,5 +24,6 @@ FactoryBot.define do
         association :account
         association :status
         association :category
+        association :type
     end
 end

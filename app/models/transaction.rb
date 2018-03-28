@@ -12,6 +12,7 @@
 #  account_id  :integer
 #  status_id   :integer
 #  category_id :integer
+#  type_id     :integer
 #
 
 class Transaction < ApplicationRecord
@@ -19,5 +20,6 @@ class Transaction < ApplicationRecord
     belongs_to :account
     belongs_to :status
     belongs_to :category
+    belongs_to :type
     default_scope {order(:date)}
 end
