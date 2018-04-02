@@ -30,6 +30,12 @@ class CategoriesController < ApplicationController
         head :no_content
     end
 
+    # GET /categories/active
+    def active
+        @category = Category.only_active
+        json_response(@category)
+    end
+
     private 
         def category_params
             params.permit(:name, :isActive)

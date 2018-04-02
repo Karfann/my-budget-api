@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Accounts API', type: :request do
     # initialize test data 
     let!(:accounts) { create_list(:account, 10) }
+    let!(:inactive_account) { create(:account, isActive: false)}
     let(:account_id) { accounts.first.id }
 
     # Test suite for GET/Accounts
@@ -12,6 +13,21 @@ RSpec.describe 'Accounts API', type: :request do
         before { get '/accounts' }
 
         it 'returns accounts' do
+          # Note `json` is a custom helper to parse JSON responses
+          expect(json).not_to be_empty
+          expect(json.size).to eq(11)
+        end
+
+        it 'returns status code 200' do
+            expect(response).to have_http_status(200)
+        end
+    end
+
+    describe 'GET /accounts/active' do
+        # make HTTP get request before each example
+        before { get '/accounts/active' }
+
+        it 'returns active accounts' do
           # Note `json` is a custom helper to parse JSON responses
           expect(json).not_to be_empty
           expect(json.size).to eq(10)

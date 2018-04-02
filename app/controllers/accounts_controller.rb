@@ -30,6 +30,12 @@ class AccountsController < ApplicationController
         head :no_content
     end
 
+    # GET /accounts/active
+    def active
+        @account = Account.only_active
+        json_response(@account)
+    end
+
     private 
         def account_params
             params.permit(:name, :balance, :isActive)

@@ -14,4 +14,5 @@ class Type < ApplicationRecord
     validates_presence_of :name, :value
     has_many :transactions
     default_scope {order(:name)}
+    scope :only_active, -> { where( isActive: true )}
 end

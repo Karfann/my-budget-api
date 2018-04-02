@@ -3,12 +3,28 @@ require 'rails_helper'
 RSpec.describe 'Type API', type: :request do
     # initialize test data 
     let!(:types) { create_list(:type, 10) }
+    let!(:inactive) { create(:type, isActive: false)}
     let(:type_id) { types.first.id }
 
     # Test suite for GET/Types
     describe 'GET /types' do
         # make HTTP get request before each example
         before { get '/types' }
+
+        it 'returns types' do
+          # Note `json` is a custom helper to parse JSON responses
+          expect(json).not_to be_empty
+          expect(json.size).to eq(11)
+        end
+
+        it 'returns types code 200' do
+            expect(response).to have_http_status(200)
+        end
+    end
+
+    describe 'GET /types/active' do
+        # make HTTP get request before each example
+        before { get '/types/active' }
 
         it 'returns types' do
           # Note `json` is a custom helper to parse JSON responses

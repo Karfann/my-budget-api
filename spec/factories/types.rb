@@ -11,9 +11,9 @@
 #
 
 FactoryBot.define do
-    factory :type do
+    factory :type, aliases: [:isActive_type] do
         name { Faker::Name.name }
-        isActive { Faker::Boolean.boolean }
+        isActive true
         value { Faker::Number.between(-1, 1) }
     end
 end

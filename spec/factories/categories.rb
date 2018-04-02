@@ -10,7 +10,7 @@
 #
 
 FactoryBot.define do
-    factory :category do
+    factory :category, aliases: [:isActive_category] do
         name { Faker::Name.name}
         isActive true
     end

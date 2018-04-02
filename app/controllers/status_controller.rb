@@ -30,6 +30,12 @@ class StatusController < ApplicationController
         head :no_content
     end
 
+    # GET /status/active
+    def active
+        @status = Status.only_active
+        json_response(@status)
+    end
+
     private 
         def status_params
             params.permit(:name, :isActive)

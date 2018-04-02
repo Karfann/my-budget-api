@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Status API', type: :request do
     # initialize test data 
     let!(:status_list) { create_list(:status, 10) }
+    let!(:inactive) { create(:status, isActive: false)}
     let(:status_id) { status_list.first.id }
 
     # Test suite for GET/Status
@@ -11,6 +12,21 @@ RSpec.describe 'Status API', type: :request do
         before { get '/status' }
 
         it 'returns status' do
+          # Note `json` is a custom helper to parse JSON responses
+          expect(json).not_to be_empty
+          expect(json.size).to eq(11)
+        end
+
+        it 'returns status code 200' do
+            expect(response).to have_http_status(200)
+        end
+    end
+
+    describe 'GET /status/active' do
+        # make HTTP get request before each example
+        before { get '/status/active' }
+
+        it 'returns active status' do
           # Note `json` is a custom helper to parse JSON responses
           expect(json).not_to be_empty
           expect(json.size).to eq(10)

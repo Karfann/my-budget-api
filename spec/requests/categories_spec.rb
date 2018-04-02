@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Categories API', type: :request do
     # initialize test data 
     let!(:categories) { create_list(:category, 10) }
+    let!(:inactive) { create(:category, isActive: false)}
     let(:category_id) { categories.first.id }
 
     # Test suite for GET/Category
@@ -13,7 +14,7 @@ RSpec.describe 'Categories API', type: :request do
         it 'returns categories' do
           # Note `json` is a custom helper to parse JSON responses
           expect(json).not_to be_empty
-          expect(json.size).to eq(10)
+          expect(json.size).to eq(11)
         end
 
         it 'returns categories code 200' do
@@ -21,6 +22,21 @@ RSpec.describe 'Categories API', type: :request do
         end
     end
 
+    describe 'GET /categories/active' do
+        # make HTTP get request before each example
+        before { get '/categories/active' }
+
+        it 'returns active categories' do
+          # Note `json` is a custom helper to parse JSON responses
+          expect(json).not_to be_empty
+          expect(json.size).to eq(10)
+        end
+
+        it 'returns categories code 200' do
+            expect(response).to have_http_status(200)
+        end
+    end
+    
     # Test suite for GET /categories/:id
     describe 'GET /categories/:id' do
         before {get "/categories/#{category_id}"}

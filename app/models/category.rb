@@ -13,4 +13,5 @@ class Category < ApplicationRecord
     validates_presence_of :name
     has_many :transactions
     default_scope {order(:name)}
+    scope :only_active, -> { where( isActive: true )}
 end

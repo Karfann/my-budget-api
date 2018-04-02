@@ -30,6 +30,12 @@ class TypesController < ApplicationController
         head :no_content
     end
 
+    # GET /types/active
+    def active
+        @type = Type.only_active
+        json_response(@type)
+    end
+
     private 
         def type_params
             params.permit(:name, :isActive, :value, :isSingleAction)

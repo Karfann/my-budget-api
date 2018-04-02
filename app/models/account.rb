@@ -14,4 +14,5 @@ class Account < ApplicationRecord
     validates_presence_of :name, :balance
     has_many :transactions
     default_scope {order(:name)}
+    scope :only_active, -> { where( isActive: true )}
 end
