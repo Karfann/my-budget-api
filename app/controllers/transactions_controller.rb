@@ -10,6 +10,15 @@ class TransactionsController < ApplicationController
     # POST /transactions
     def create
         @transaction = Transaction.create!(transaction_params)
+
+        if transaction_params[:account_destiny_id] > 0 
+            transaction_params_edit = transaction_params
+            transaction_params_edit[:account_id] = transaction_params[:account_destiny_id]
+            transaction_params_edit[:amount] = transaction_params[:amount].to_f * -1
+            transaction_params_edit[:category_id] = nil
+            Transaction.create!(transaction_params_edit)
+        end
+         
         json_response(@transaction, :created)
     end
 
@@ -32,10 +41,13 @@ class TransactionsController < ApplicationController
 
     private 
         def transaction_params
-            params.permit(:date, :description, :note, :amount, :account_id, :status_id, :category_id, :type_id)
+            params.permit(:date, :description, :note, :amount, :account_id, :status_id, :category_id, :type_id, :account_destiny_id)
         end
 
         def set_transaction
             @transaction = Transaction.find(params[:id])
         end
 end
+
+
+# TODO: test action duplicate

@@ -19,7 +19,9 @@ class Transaction < ApplicationRecord
     validates_presence_of :date, :description, :amount
     belongs_to :account
     belongs_to :status
-    belongs_to :category
+    belongs_to :category, optional: true
     belongs_to :type
     default_scope {order(:date)}
+
+    attr_accessor :account_destiny_id
 end
