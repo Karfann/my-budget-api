@@ -11,11 +11,11 @@ class TransactionsController < ApplicationController
     def create
         @transaction = Transaction.create!(transaction_params)
 
-        if transaction_params[:account_destiny_id] > 0 
+        if transaction_params[:account_destiny_id].to_i > 0 
             transaction_params_edit = transaction_params
             transaction_params_edit[:account_id] = transaction_params[:account_destiny_id]
             transaction_params_edit[:amount] = transaction_params[:amount].to_f * -1
-            transaction_params_edit[:category_id] = nil
+            # transaction_params_edit[:category_id] = nil
             Transaction.create!(transaction_params_edit)
         end
          
@@ -50,4 +50,4 @@ class TransactionsController < ApplicationController
 end
 
 
-# TODO: test action duplicate
+# TODO: test action duplicate 
