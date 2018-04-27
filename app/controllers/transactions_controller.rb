@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
             transaction_params_edit = transaction_params
             transaction_params_edit[:account_id] = transaction_params[:account_destiny_id]
             transaction_params_edit[:amount] = transaction_params[:amount].to_f * -1
-            # transaction_params_edit[:category_id] = nil
+            transaction_params_edit[:parent_transaction] = @transaction.id
             Transaction.create!(transaction_params_edit)
         end
          

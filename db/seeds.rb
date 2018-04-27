@@ -1,6 +1,6 @@
 Status.create!([ 
-    {name: 'Cleared', isActive: Faker::Boolean.boolean}, 
-    {name: 'Uncleared', isActive: Faker::Boolean.boolean},
+    {name: 'Cleared', isActive: true}, 
+    {name: 'Uncleared', isActive: true},
     {name: 'Void', isActive: Faker::Boolean.boolean}
 ])
 
